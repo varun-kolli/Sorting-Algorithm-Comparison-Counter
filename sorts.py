@@ -19,17 +19,19 @@ def selection_sort(list):
 
 def insertion_sort(list):
     count = 0
+    k = 0
     for x in range(1, len(list)):
         temp = list[x]
         y = x - 1
-
+        if y >= 0 and (temp >= list[y]):
+            k += 1
         while y >= 0 and temp < list[y]:
             list[y + 1] = list[y]
             y -= 1
             count += 1
         list[y + 1] = temp
         #count += 1
-    return count
+    return max(count, k)
 
 
 
@@ -39,7 +41,12 @@ def main():
     # random numbers is generated at each run
     random.seed(1234)
     # Generate 5000 random numbers from 0 to 999,999
-    randoms = random.sample(range(1000000), 32000)
+    #randoms = random.sample(range(1000000), 2000)
+
+    randoms = []
+    for i in range(1000):
+        randoms.append(i)
+
     start_time = time.time() 
     comps = insertion_sort(randoms)
     stop_time = time.time()
